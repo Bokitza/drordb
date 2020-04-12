@@ -1,53 +1,47 @@
-import React, {useCallback} from 'react'
-import {useDropzone} from 'react-dropzone'
+import PropTypes from 'prop-types'
+import React, { useCallback } from 'react'
+import { useDropzone } from 'react-dropzone'
 import XLSX from 'xlsx'
-import { connect } from 'react-redux'
+
+UploadFiles.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.bool]),
+}
 
 function UploadFiles(props) {
+  const [sheetToUpload, setSheetToUpload] = React.useState([])
+
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file) => {
       const reader = new FileReader()
       reader.onabort = () => console.log('file reading was aborted')
       reader.onerror = () => console.log('file reading has failed')
-      reader.onload = function(elem) {
-        var data = new Uint8Array(elem.target.result);
-        var workbook = XLSX.read(data, {type: 'array'});
-        var sheet=workbook.Sheets[workbook.SheetNames[0]];
-        var sheetToUpload=[]
-        sheetToUpload=XLSX.utils.sheet_to_json(sheet)
+      reader.onload = function (elem) {
+        var data = new Uint8Array(elem.target.result)
+        var workbook = XLSX.read(data, { type: 'array' })
+        var sheet = workbook.Sheets[workbook.SheetNames[0]]
+        var sheetToUpload = []
+        setSheetToUpload(XLSX.utils.sheet_to_json(sheet))
         //deleting header before uploading
         sheetToUpload.shift()
-        
-        //send to Redux
-        props.uploadSheet(sheetToUpload)}
+      }
       reader.readAsArrayBuffer(file)
     })
   }, [])
-  const {getRootProps, getInputProps} = useDropzone({onDrop})
+  const { getRootProps, getInputProps } = useDropzone({ onDrop })
 
   return (
-      //TODO make it
+    //TODO make it
     <div {...getRootProps()}>
       <input {...getInputProps()} />
       <p>נא גרור הנה את הקובץ להעלאה</p>
+      {props.children(sheetToUpload)}
     </div>
   )
 }
 
-//get file from Redux
-const connectToRedux = (state) => {return {filesUploaded: state.file}}
-
-//Maked the Redux function to upload available via props
-const outPutToRedux = (dispatch) => {return {
-    uploadSheet: (file) => {dispatch({type:'UPLOAD', data: file})}
-}}
-export default connect(connectToRedux, outPutToRedux)(UploadFiles)
+export default UploadFiles
 
 // const dropArea = document.getElementById("btn");
-
-
-  
-
 
 // var files = [];
 // const handleDrop = (e) => {
@@ -71,11 +65,7 @@ export default connect(connectToRedux, outPutToRedux)(UploadFiles)
 //   function merge() {
 //     //defining header location
 //     var headerMax=parseInt(headers.value);
-    
+
 //     if(j<files.length) {
 //     var reader = new FileReader();
 //     reader.readAsArrayBuffer(files[j]);
-
-    
-
-  
