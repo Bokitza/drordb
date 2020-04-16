@@ -1,11 +1,8 @@
-import PropTypes from 'prop-types'
 import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import XLSX from 'xlsx'
 
-UploadFiles.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.bool]),
-}
+
 
 function UploadFiles(props) {
   const [sheetToUpload, setSheetToUpload] = React.useState([])
@@ -19,7 +16,6 @@ function UploadFiles(props) {
         var data = new Uint8Array(elem.target.result)
         var workbook = XLSX.read(data, { type: 'array' })
         var sheet = workbook.Sheets[workbook.SheetNames[0]]
-        var sheetToUpload = []
         setSheetToUpload(XLSX.utils.sheet_to_json(sheet))
         //deleting header before uploading
         sheetToUpload.shift()
@@ -27,13 +23,13 @@ function UploadFiles(props) {
       reader.readAsArrayBuffer(file)
     })
   }, [])
-  const { getRootProps, getInputProps } = useDropzone({ onDrop })
-
+  const {getRootProps, getInputProps} = useDropzone({ onDrop })
+  console.log(sheetToUpload)
   return (
     //TODO make it
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      <p>נא גרור הנה את הקובץ להעלאה</p>
+    <div>
+      <p {...getRootProps()}>נא גרור הנה את הקובץ להעלאה</p>
+      <input {...getInputProps()}></input>
       {props.children(sheetToUpload)}
     </div>
   )

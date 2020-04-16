@@ -13,7 +13,7 @@ export class Navbar extends Component {
           <Button color="inherit" component={Link} to="/dashBoard"> דאש-בורד </Button>
           <Button color="inherit" component={Link} to="/home"> בית </Button>
           <Button color="inherit" component={Link} to="/users"> חיפוש חברים </Button>
-          <Button color="inherit" component={Link} to="/uploadsalary"> העלה נתונים </Button>
+          <Button color="inherit" component={Link} to="/uploadexcel"> העלה נתונים </Button>
         </ToolBar>
       </AppBar>
     )

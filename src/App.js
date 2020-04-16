@@ -6,7 +6,7 @@ import dashboard from './pages/dashboard'
 //pages and components
 import Home from './pages/Home'
 import login from './pages/login'
-import salarysheet from './pages/salarysheet'
+import UploadExcel from './pages/UploadExcel'
 import users from './pages/users'
 
 class App extends Component {
@@ -21,7 +21,7 @@ class App extends Component {
               <Route exact path="/login" component={login} />
               <Route exact path="/dashboard" component={dashboard} />
               <Route exact path="/users" component={users} />
-              <Route exact path="/uploadsalary" component={salarysheet} />
+              <Route exact path="/uploadexcel" component={UploadExcel} />
             </Switch>
           </div>
         </Router>
