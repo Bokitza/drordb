@@ -6,9 +6,7 @@ import axios from 'axios'
 
 export default function Uploadtodb(props) {
     const UploadSheet = () => {
-
         props.children.forEach((e) => { console.log(e["ת.ז"]);
-        
         axios.post(
             //url of request  
             '/users',
@@ -17,12 +15,12 @@ export default function Uploadtodb(props) {
             .then(res=>{
                 console.log(res)
             }).catch(err=>{console.log(err)})})
-       
          }
 
-    return (
-        <div>
-            <Button variant="contained" color="primary" onClick={UploadSheet}> העלה לשרת </Button>
-        </div>
-    )
+         if (props.children <= 1) {return []} else {return (
+            <div>
+                <Button variant="contained" color="primary" onClick={UploadSheet}> העלה לשרת </Button>
+            </div>
+        )}
+    
 }

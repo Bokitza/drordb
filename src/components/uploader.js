@@ -5,6 +5,8 @@ import XLSX from 'xlsx'
 
 
 function UploadFiles(props) {
+
+  //we use the sheetToUpload as a state for react to update the table on the guy
   const [sheetToUpload, setSheetToUpload] = React.useState([])
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -17,8 +19,7 @@ function UploadFiles(props) {
         var workbook = XLSX.read(data, { type: 'array' })
         var sheet = workbook.Sheets[workbook.SheetNames[0]]
         setSheetToUpload(XLSX.utils.sheet_to_json(sheet))
-        //deleting header before uploading
-        sheetToUpload.shift()
+
       }
       reader.readAsArrayBuffer(file)
     })

@@ -32,7 +32,7 @@ const useStyles = makeStyles({
 });
 
 export default function UploadExcel() {
-
+  const changeKey=function (e) {console.log (e)}
   const [excel, setExcel] = useState()
   const classes = useStyles()
   return (
@@ -58,7 +58,7 @@ export default function UploadExcel() {
                     <TableRow key={uniquer()}>
                       {Object.values(row).map((cell) => 
                       (
-                        <TableCell key={uniquer()} className={classes.cells}>{cell}</TableCell>
+                        <TableCell contentEditable={true} key={uniquer()} className={classes.cells} onKeyDown={changeKey()}>{cell}</TableCell>
                       )
                       )}
                     </TableRow>

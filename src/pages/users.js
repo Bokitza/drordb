@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import UserProfile from './userProfile'
+import Userprofile from './Userprofile'
+import '../App.css'
+import Container from '@material-ui/core/Container';
+
 
 export class users extends Component {
 
@@ -9,33 +12,33 @@ export class users extends Component {
 
     //when loading to screen to a post request
     componentDidMount(){
-        axios.post(
+        axios.get(
         //url of request  
-        '/usersearch',
+        '/users',
         //body of request
         {
-            "lastName": "sagi",
-            "firstName": "yoav"
+     
         })
         .then(res=>{
             this.setState(
                 {users:res.data}
             );
+            console.log(res)
         }).catch(err=>{console.log(err)})
     }
 
     render() {
         let showUsers = this.state.users ? (
             this.state.users.map(e=>
-                <UserProfile user={e}/> 
+                <Userprofile user={e}/> 
                 ))
              : 
              <p> טוען...</p>
         return (
-            <div>
-               כאן רואים חברי תנועה 
-               <h2> {showUsers} </h2>
-            </div>
+            <Container>
+            <div> כאן יש כל מיני פילטרים לחפש לפיהם אנשים</div>
+               <div>{showUsers} </div>
+            </Container>
         )
     }
 }

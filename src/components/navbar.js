@@ -10,7 +10,6 @@ export class Navbar extends Component {
       <AppBar>
         <ToolBar className="toolbar">
           <Button color="inherit" component={Link} to="/login"> התנתק </Button>
-          <Button color="inherit" component={Link} to="/dashBoard"> דאש-בורד </Button>
           <Button color="inherit" component={Link} to="/home"> בית </Button>
           <Button color="inherit" component={Link} to="/users"> חיפוש חברים </Button>
           <Button color="inherit" component={Link} to="/uploadexcel"> העלה נתונים </Button>
