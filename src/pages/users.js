@@ -28,10 +28,9 @@ export class users extends Component {
     }
 
     render() {
-        let showUsers = this.state.users ? (
-            this.state.users.map(e=>
-                <Userprofile user={e}/> 
-                ))
+        let showUsers = this.state.users 
+        ?
+            (this.state.users.map(e=><Userprofile user={e}/>))
              : 
              <p> טוען...</p>
         return (

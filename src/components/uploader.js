@@ -4,7 +4,7 @@ import XLSX from 'xlsx'
 
 
 
-function UploadFiles(props) {
+function Uploader(props) {
 
   //we use the sheetToUpload as a state for react to update the table on the guy
   const [sheetToUpload, setSheetToUpload] = React.useState([])
@@ -25,7 +25,7 @@ function UploadFiles(props) {
     })
   }, [])
   const {getRootProps, getInputProps} = useDropzone({ onDrop })
-  console.log(sheetToUpload)
+  
   return (
     //TODO make it
     <div>
@@ -36,7 +36,7 @@ function UploadFiles(props) {
   )
 }
 
-export default UploadFiles
+export default Uploader
 
 // const dropArea = document.getElementById("btn");
 

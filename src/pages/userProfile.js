@@ -49,5 +49,6 @@ export default function Userprofile(props) {
         <Button variant="contained" color="secondary" component={Link} to={`/userquery/${props.user.id}`}> מידע נוסף </Button>
       </CardActions>
     </Card>
+    
   );
 }
