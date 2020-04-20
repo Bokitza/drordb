@@ -6,7 +6,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import React, {useState} from 'react'
-import Uploader from '../components/uploader'
+import ExcelLoader from '../components/ExcelLoader'
 import {makeStyles} from '@material-ui/core/styles'
 import Uploadtodb from '../components/Uploadtodb'
 
@@ -36,10 +36,10 @@ export default function UploadExcel() {
   const classes = useStyles()
   return (
     <div>
-      <Uploader>
+      <ExcelLoader>
         {(tableData) => {
-          setExcel(tableData)
-          return (
+          if (!tableData) {return null} else{
+          return ( <div>
             <TableContainer component={Paper}>
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
@@ -65,10 +65,11 @@ export default function UploadExcel() {
                 </TableBody>
               </Table>
             </TableContainer>
-          )
+            <Uploadtodb>{(tableData)?tableData:null}</Uploadtodb>
+            </div>
+          )}
         }}
-      </Uploader>
-      <Uploadtodb>{(excel)?excel:null}</Uploadtodb>
+      </ExcelLoader>
     </div>
   )
 }

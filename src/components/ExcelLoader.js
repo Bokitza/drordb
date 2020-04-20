@@ -4,7 +4,7 @@ import XLSX from 'xlsx'
 
 
 
-function Uploader(props) {
+function ExcelLoader(props) {
 
   //we use the sheetToUpload as a state for react to update the table on the guy
   const [sheetToUpload, setSheetToUpload] = React.useState([])
@@ -32,37 +32,9 @@ function Uploader(props) {
       <p {...getRootProps()}>נא גרור הנה את הקובץ להעלאה</p>
       <input {...getInputProps()}></input>
       {props.children(sheetToUpload)}
+    
     </div>
   )
 }
 
-export default Uploader
-
-// const dropArea = document.getElementById("btn");
-
-// var files = [];
-// const handleDrop = (e) => {
-//   //Things against some kinda bugs... boilerplate
-//   e.stopPropagation(); e.preventDefault();
-//   //convert the target into an array of files
-//   for (let i=0; i < e.dataTransfer.files.length; i++)
-//   {files.push(e.dataTransfer.files[i]);}
-//   console.log(`${files.length} + "files uploaded`)
-
-//   //pops the header selector buttons!
-//   const uploadBtn=document.getElementById("upload");
-//   document.body.appendChild(headerHelper);
-//   document.body.appendChild(headers);
-// }
-// var jsoned = null;
-// var merged =[];
-// var reader = null
-// var j=0;
-// //reading and appending the files to Merged array
-//   function merge() {
-//     //defining header location
-//     var headerMax=parseInt(headers.value);
-
-//     if(j<files.length) {
-//     var reader = new FileReader();
-//     reader.readAsArrayBuffer(files[j]);
+export default ExcelLoader

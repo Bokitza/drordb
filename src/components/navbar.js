@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import ToolBar from '@material-ui/core/ToolBar'
 import { Button } from '@material-ui/core'
-import Link from 'react-router-dom/Link'
+import {Link} from 'react-router-dom'
 
 export class Navbar extends Component {
   render() {
